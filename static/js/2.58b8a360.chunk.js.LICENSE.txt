@@ -1,0 +1,2252 @@
+/*
+object-assign
+(c) Sindre Sorhus
+@license MIT
+*/
+
+/*!
+  Copyright (c) 2017 Jed Watson.
+  Licensed under the MIT License (MIT), see
+  http://jedwatson.github.io/classnames
+*/
+
+/*!
+ * Determine if an object is a Buffer
+ *
+ * @author   Feross Aboukhadijeh <https://feross.org>
+ * @license  MIT
+ */
+
+/*!
+ * repeat-string <https://github.com/jonschlinkert/repeat-string>
+ *
+ * Copyright (c) 2014-2015, Jon Schlinkert.
+ * Licensed under the MIT License.
+ */
+
+/*! https://mths.be/punycode v1.4.1 by @mathias */
+
+/*! showdown v 1.9.1 - 02-11-2019 */
+
+/**
+    	   * @license
+    	   * Copyright Google Inc. All Rights Reserved.
+    	   *
+    	   * Use of this source code is governed by an MIT-style license that can be
+    	   * found in the LICENSE file at https://angular.io/license
+    	   */
+
+/**
+ * @author Titus Wormer
+ * @copyright 2015 Titus Wormer
+ * @license MIT
+ * @module blockquote-indentation
+ * @fileoverview
+ *   Warn when block quotes are indented too much or too little.
+ *
+ *   Options: `number` or `'consistent'`, default: `'consistent'`.
+ *
+ *   `'consistent'` detects the first used indentation and will warn when
+ *   other block quotes use a different indentation.
+ *
+ * @example {"name": "ok.md", "setting": 4}
+ *
+ *   >   Hello
+ *
+ *   Paragraph.
+ *
+ *   >   World
+ *
+ * @example {"name": "ok.md", "setting": 2}
+ *
+ *   > Hello
+ *
+ *   Paragraph.
+ *
+ *   > World
+ *
+ * @example {"name": "not-ok.md", "label": "input"}
+ *
+ *   >  Hello
+ *
+ *   Paragraph.
+ *
+ *   >   World
+ *
+ *   Paragraph.
+ *
+ *   > World
+ *
+ * @example {"name": "not-ok.md", "label": "output"}
+ *
+ *   5:3: Remove 1 space between block quote and content
+ *   9:3: Add 1 space between block quote and content
+ */
+
+/**
+ * @author Titus Wormer
+ * @copyright 2015 Titus Wormer
+ * @license MIT
+ * @module code-block-style
+ * @fileoverview
+ *   Warn when code blocks do not adhere to a given style.
+ *
+ *   Options: `'consistent'`, `'fenced'`, or `'indented'`, default: `'consistent'`.
+ *
+ *   `'consistent'` detects the first used code block style and warns when
+ *   subsequent code blocks uses different styles.
+ *
+ *   ## Fix
+ *
+ *   [`remark-stringify`](https://github.com/remarkjs/remark/tree/HEAD/packages/remark-stringify)
+ *   formats code blocks using a fence if they have a language flag and
+ *   indentation if not.
+ *   Pass
+ *   [`fences: true`](https://github.com/remarkjs/remark/tree/HEAD/packages/remark-stringify#optionsfences)
+ *   to always use fences for code blocks.
+ *
+ *   See [Using remark to fix your Markdown](https://github.com/remarkjs/remark-lint#using-remark-to-fix-your-markdown)
+ *   on how to automatically fix warnings for this rule.
+ *
+ * @example {"setting": "indented", "name": "ok.md"}
+ *
+ *       alpha();
+ *
+ *   Paragraph.
+ *
+ *       bravo();
+ *
+ * @example {"setting": "indented", "name": "not-ok.md", "label": "input"}
+ *
+ *   ```
+ *   alpha();
+ *   ```
+ *
+ *   Paragraph.
+ *
+ *   ```
+ *   bravo();
+ *   ```
+ *
+ * @example {"setting": "indented", "name": "not-ok.md", "label": "output"}
+ *
+ *   1:1-3:4: Code blocks should be indented
+ *   7:1-9:4: Code blocks should be indented
+ *
+ * @example {"setting": "fenced", "name": "ok.md"}
+ *
+ *   ```
+ *   alpha();
+ *   ```
+ *
+ *   Paragraph.
+ *
+ *   ```
+ *   bravo();
+ *   ```
+ *
+ * @example {"setting": "fenced", "name": "not-ok-fenced.md", "label": "input"}
+ *
+ *       alpha();
+ *
+ *   Paragraph.
+ *
+ *       bravo();
+ *
+ * @example {"setting": "fenced", "name": "not-ok-fenced.md", "label": "output"}
+ *
+ *   1:1-1:13: Code blocks should be fenced
+ *   5:1-5:13: Code blocks should be fenced
+ *
+ * @example {"name": "not-ok-consistent.md", "label": "input"}
+ *
+ *       alpha();
+ *
+ *   Paragraph.
+ *
+ *   ```
+ *   bravo();
+ *   ```
+ *
+ * @example {"name": "not-ok-consistent.md", "label": "output"}
+ *
+ *   5:1-7:4: Code blocks should be indented
+ *
+ * @example {"setting": "💩", "name": "not-ok-incorrect.md", "label": "output", "config": {"positionless": true}}
+ *
+ *   1:1: Incorrect code block style `💩`: use either `'consistent'`, `'fenced'`, or `'indented'`
+ */
+
+/**
+ * @author Titus Wormer
+ * @copyright 2015 Titus Wormer
+ * @license MIT
+ * @module definition-case
+ * @fileoverview
+ *   Warn when definition labels are not lowercase.
+ *
+ * @example {"name": "ok.md"}
+ *
+ *   [example]: http://example.com "Example Domain"
+ *
+ * @example {"name": "not-ok.md", "label": "input"}
+ *
+ *   [Example]: http://example.com "Example Domain"
+ *
+ * @example {"name": "not-ok.md", "label": "output"}
+ *
+ *   1:1-1:47: Do not use uppercase characters in definition labels
+ */
+
+/**
+ * @author Titus Wormer
+ * @copyright 2015 Titus Wormer
+ * @license MIT
+ * @module definition-spacing
+ * @fileoverview
+ *   Warn when consecutive whitespace is used in a definition.
+ *
+ * @example {"name": "ok.md"}
+ *
+ *   [example domain]: http://example.com "Example Domain"
+ *
+ * @example {"name": "not-ok.md", "label": "input"}
+ *
+ *   [example····domain]: http://example.com "Example Domain"
+ *
+ * @example {"name": "not-ok.md", "label": "output"}
+ *
+ *   1:1-1:57: Do not use consecutive whitespace in definition labels
+ */
+
+/**
+ * @author Titus Wormer
+ * @copyright 2015 Titus Wormer
+ * @license MIT
+ * @module emphasis-marker
+ * @fileoverview
+ *   Warn for violating emphasis markers.
+ *
+ *   Options: `'consistent'`, `'*'`, or `'_'`, default: `'consistent'`.
+ *
+ *   `'consistent'` detects the first used emphasis style and warns when
+ *   subsequent emphasis use different styles.
+ *
+ *   ## Fix
+ *
+ *   [`remark-stringify`](https://github.com/remarkjs/remark/tree/HEAD/packages/remark-stringify)
+ *   formats emphasis using `_` (underscore) by default.
+ *   Pass
+ *   [`emphasis: '*'`](https://github.com/remarkjs/remark/tree/HEAD/packages/remark-stringify#optionsemphasis)
+ *   to use `*` (asterisk) instead.
+ *
+ *   See [Using remark to fix your Markdown](https://github.com/remarkjs/remark-lint#using-remark-to-fix-your-markdown)
+ *   on how to automatically fix warnings for this rule.
+ *
+ * @example {"setting": "*", "name": "ok.md"}
+ *
+ *   *foo*
+ *
+ * @example {"setting": "*", "name": "not-ok.md", "label": "input"}
+ *
+ *   _foo_
+ *
+ * @example {"setting": "*", "name": "not-ok.md", "label": "output"}
+ *
+ *   1:1-1:6: Emphasis should use `*` as a marker
+ *
+ * @example {"setting": "_", "name": "ok.md"}
+ *
+ *   _foo_
+ *
+ * @example {"setting": "_", "name": "not-ok.md", "label": "input"}
+ *
+ *   *foo*
+ *
+ * @example {"setting": "_", "name": "not-ok.md", "label": "output"}
+ *
+ *   1:1-1:6: Emphasis should use `_` as a marker
+ *
+ * @example {"name": "not-ok.md", "label": "input"}
+ *
+ *   *foo*
+ *   _bar_
+ *
+ * @example {"name": "not-ok.md", "label": "output"}
+ *
+ *   2:1-2:6: Emphasis should use `*` as a marker
+ *
+ * @example {"setting": "💩", "name": "not-ok.md", "label": "output", "config": {"positionless": true}}
+ *
+ *   1:1: Incorrect emphasis marker `💩`: use either `'consistent'`, `'*'`, or `'_'`
+ */
+
+/**
+ * @author Titus Wormer
+ * @copyright 2015 Titus Wormer
+ * @license MIT
+ * @module fenced-code-flag
+ * @fileoverview
+ *   Check fenced code block flags.
+ *
+ *   Options: `Array.<string>` or `Object`, optional.
+ *
+ *   Providing an array is as passing `{flags: Array}`.
+ *
+ *   The object can have an array of `'flags'` which are allowed: other flags
+ *   will not be allowed.
+ *   An `allowEmpty` field (`boolean`, default: `false`) can be set to allow
+ *   code blocks without language flags.
+ *
+ * @example {"name": "ok.md"}
+ *
+ *   ```alpha
+ *   bravo();
+ *   ```
+ *
+ * @example {"name": "not-ok.md", "label": "input"}
+ *
+ *   ```
+ *   alpha();
+ *   ```
+ *
+ * @example {"name": "not-ok.md", "label": "output"}
+ *
+ *   1:1-3:4: Missing code language flag
+ *
+ * @example {"name": "ok.md", "setting": {"allowEmpty": true}}
+ *
+ *   ```
+ *   alpha();
+ *   ```
+ *
+ * @example {"name": "not-ok.md", "setting": {"allowEmpty": false}, "label": "input"}
+ *
+ *   ```
+ *   alpha();
+ *   ```
+ *
+ * @example {"name": "not-ok.md", "setting": {"allowEmpty": false}, "label": "output"}
+ *
+ *   1:1-3:4: Missing code language flag
+ *
+ * @example {"name": "ok.md", "setting": ["alpha"]}
+ *
+ *   ```alpha
+ *   bravo();
+ *   ```
+ *
+ * @example {"name": "not-ok.md", "setting": ["charlie"], "label": "input"}
+ *
+ *   ```alpha
+ *   bravo();
+ *   ```
+ *
+ * @example {"name": "not-ok.md", "setting": ["charlie"], "label": "output"}
+ *
+ *   1:1-3:4: Incorrect code language flag
+ */
+
+/**
+ * @author Titus Wormer
+ * @copyright 2015 Titus Wormer
+ * @license MIT
+ * @module fenced-code-marker
+ * @fileoverview
+ *   Warn for violating fenced code markers.
+ *
+ *   Options: `` '`' ``, `'~'`, or `'consistent'`, default: `'consistent'`.
+ *
+ *   `'consistent'` detects the first used fenced code marker style and warns
+ *   when subsequent fenced code blocks use different styles.
+ *
+ *   ## Fix
+ *
+ *   [`remark-stringify`](https://github.com/remarkjs/remark/tree/HEAD/packages/remark-stringify)
+ *   formats fences using ``'`'`` (grave accent) by default.
+ *   Pass
+ *   [`fence: '~'`](https://github.com/remarkjs/remark/tree/HEAD/packages/remark-stringify#optionsfence)
+ *   to use `~` (tilde) instead.
+ *
+ *   See [Using remark to fix your Markdown](https://github.com/remarkjs/remark-lint#using-remark-to-fix-your-markdown)
+ *   on how to automatically fix warnings for this rule.
+ *
+ * @example {"name": "ok.md"}
+ *
+ *   Indented code blocks are not affected by this rule:
+ *
+ *       bravo();
+ *
+ * @example {"name": "ok.md", "setting": "`"}
+ *
+ *   ```alpha
+ *   bravo();
+ *   ```
+ *
+ *   ```
+ *   charlie();
+ *   ```
+ *
+ * @example {"name": "ok.md", "setting": "~"}
+ *
+ *   ~~~alpha
+ *   bravo();
+ *   ~~~
+ *
+ *   ~~~
+ *   charlie();
+ *   ~~~
+ *
+ * @example {"name": "not-ok-consistent-tick.md", "label": "input"}
+ *
+ *   ```alpha
+ *   bravo();
+ *   ```
+ *
+ *   ~~~
+ *   charlie();
+ *   ~~~
+ *
+ * @example {"name": "not-ok-consistent-tick.md", "label": "output"}
+ *
+ *   5:1-7:4: Fenced code should use `` ` `` as a marker
+ *
+ * @example {"name": "not-ok-consistent-tilde.md", "label": "input"}
+ *
+ *   ~~~alpha
+ *   bravo();
+ *   ~~~
+ *
+ *   ```
+ *   charlie();
+ *   ```
+ *
+ * @example {"name": "not-ok-consistent-tilde.md", "label": "output"}
+ *
+ *   5:1-7:4: Fenced code should use `~` as a marker
+ *
+ * @example {"name": "not-ok-incorrect.md", "setting": "💩", "label": "output", "config": {"positionless": true}}
+ *
+ *   1:1: Incorrect fenced code marker `💩`: use either `'consistent'`, `` '`' ``, or `'~'`
+ */
+
+/**
+ * @author Titus Wormer
+ * @copyright 2015 Titus Wormer
+ * @license MIT
+ * @module file-extension
+ * @fileoverview
+ *   Warn when the file extension differ from the preferred extension.
+ *
+ *   Does not warn when given documents have no file extensions (such as
+ *   `AUTHORS` or `LICENSE`).
+ *
+ *   Options: `string`, default: `'md'` — Expected file extension.
+ *
+ * @example {"name": "readme.md"}
+ *
+ * @example {"name": "readme"}
+ *
+ * @example {"name": "readme.mkd", "label": "output", "config": {"positionless": true}}
+ *
+ *   1:1: Incorrect extension: use `md`
+ *
+ * @example {"name": "readme.mkd", "setting": "mkd"}
+ */
+
+/**
+ * @author Titus Wormer
+ * @copyright 2015 Titus Wormer
+ * @license MIT
+ * @module final-definition
+ * @fileoverview
+ *   Warn when definitions are placed somewhere other than at the end of
+ *   the file.
+ *
+ * @example {"name": "ok.md"}
+ *
+ *   Paragraph.
+ *
+ *   [example]: http://example.com "Example Domain"
+ *
+ * @example {"name": "not-ok.md", "label": "input"}
+ *
+ *   Paragraph.
+ *
+ *   [example]: http://example.com "Example Domain"
+ *
+ *   Another paragraph.
+ *
+ * @example {"name": "not-ok.md", "label": "output"}
+ *
+ *   3:1-3:47: Move definitions to the end of the file (after the node at line `5`)
+ *
+ * @example {"name": "ok-comments.md"}
+ *
+ *   Paragraph.
+ *
+ *   [example-1]: http://example.com/one/
+ *
+ *   <!-- Comments are fine between and after definitions -->
+ *
+ *   [example-2]: http://example.com/two/
+ */
+
+/**
+ * @author Titus Wormer
+ * @copyright 2015 Titus Wormer
+ * @license MIT
+ * @module hard-break-spaces
+ * @fileoverview
+ *   Warn when too many spaces are used to create a hard break.
+ *
+ * @example {"name": "ok.md"}
+ *
+ *   Lorem ipsum··
+ *   dolor sit amet
+ *
+ * @example {"name": "not-ok.md", "label": "input"}
+ *
+ *   Lorem ipsum···
+ *   dolor sit amet.
+ *
+ * @example {"name": "not-ok.md", "label": "output"}
+ *
+ *   1:12-2:1: Use two spaces for hard line breaks
+ */
+
+/**
+ * @author Titus Wormer
+ * @copyright 2015 Titus Wormer
+ * @license MIT
+ * @module heading-increment
+ * @fileoverview
+ *   Warn when headings increment with more than 1 level at a time.
+ *
+ * @example {"name": "ok.md"}
+ *
+ *   # Alpha
+ *
+ *   ## Bravo
+ *
+ * @example {"name": "not-ok.md", "label": "input"}
+ *
+ *   # Charlie
+ *
+ *   ### Delta
+ *
+ * @example {"name": "not-ok.md", "label": "output"}
+ *
+ *   3:1-3:10: Heading levels should increment by one level at a time
+ */
+
+/**
+ * @author Titus Wormer
+ * @copyright 2015 Titus Wormer
+ * @license MIT
+ * @module heading-style
+ * @fileoverview
+ *   Warn when a heading does not conform to a given style.
+ *
+ *   Options: `'consistent'`, `'atx'`, `'atx-closed'`, or `'setext'`,
+ *   default: `'consistent'`.
+ *
+ *   `'consistent'` detects the first used heading style and warns when
+ *   subsequent headings use different styles.
+ *
+ *   ## Fix
+ *
+ *   [`remark-stringify`](https://github.com/remarkjs/remark/tree/HEAD/packages/remark-stringify)
+ *   formats headings as ATX by default.
+ *   This can be configured with the
+ *   [`setext`](https://github.com/remarkjs/remark/tree/HEAD/packages/remark-stringify#optionssetext)
+ *   and
+ *   [`closeAtx`](https://github.com/remarkjs/remark/tree/HEAD/packages/remark-stringify#optionscloseatx)
+ *   options.
+ *
+ *   See [Using remark to fix your Markdown](https://github.com/remarkjs/remark-lint#using-remark-to-fix-your-markdown)
+ *   on how to automatically fix warnings for this rule.
+ *
+ * @example {"name": "ok.md", "setting": "atx"}
+ *
+ *   # Alpha
+ *
+ *   ## Bravo
+ *
+ *   ### Charlie
+ *
+ * @example {"name": "ok.md", "setting": "atx-closed"}
+ *
+ *   # Delta ##
+ *
+ *   ## Echo ##
+ *
+ *   ### Foxtrot ###
+ *
+ * @example {"name": "ok.md", "setting": "setext"}
+ *
+ *   Golf
+ *   ====
+ *
+ *   Hotel
+ *   -----
+ *
+ *   ### India
+ *
+ * @example {"name": "not-ok.md", "label": "input"}
+ *
+ *   Juliett
+ *   =======
+ *
+ *   ## Kilo
+ *
+ *   ### Lima ###
+ *
+ * @example {"name": "not-ok.md", "label": "output"}
+ *
+ *   4:1-4:8: Headings should use setext
+ *   6:1-6:13: Headings should use setext
+ */
+
+/**
+ * @author Titus Wormer
+ * @copyright 2015 Titus Wormer
+ * @license MIT
+ * @module link-title-style
+ * @fileoverview
+ *   Warn when link and definition titles occur with incorrect quotes.
+ *
+ *   Options: `'consistent'`, `'"'`, `'\''`, or `'()'`, default: `'consistent'`.
+ *
+ *   `'consistent'` detects the first used quote style and warns when subsequent
+ *   titles use different styles.
+ *
+ *   ## Fix
+ *
+ *   [`remark-stringify`](https://github.com/remarkjs/remark/tree/HEAD/packages/remark-stringify)
+ *   uses `'` (single quote) for titles if they contain a double quote, and `"`
+ *   (double quotes) otherwise.
+ *
+ *   See [Using remark to fix your Markdown](https://github.com/remarkjs/remark-lint#using-remark-to-fix-your-markdown)
+ *   on how to automatically fix warnings for this rule.
+ *
+ * @example {"name": "ok.md", "setting": "\""}
+ *
+ *   [Example](http://example.com#without-title)
+ *   [Example](http://example.com "Example Domain")
+ *   ![Example](http://example.com "Example Domain")
+ *
+ *   [Example]: http://example.com "Example Domain"
+ *
+ *   You can use parens in URLs if they’re not a title (see GH-166):
+ *
+ *   [Example](#Heading-(optional))
+ *
+ * @example {"name": "not-ok.md", "label": "input", "setting": "\""}
+ *
+ *   [Example]: http://example.com 'Example Domain'
+ *
+ * @example {"name": "not-ok.md", "label": "output", "setting": "\""}
+ *
+ *   1:31-1:47: Titles should use `"` as a quote
+ *
+ * @example {"name": "ok.md", "setting": "'"}
+ *
+ *   [Example](http://example.com#without-title)
+ *   [Example](http://example.com 'Example Domain')
+ *   ![Example](http://example.com 'Example Domain')
+ *
+ *   [Example]: http://example.com 'Example Domain'
+ *
+ * @example {"name": "not-ok.md", "label": "input", "setting": "'"}
+ *
+ *   [Example]: http://example.com "Example Domain"
+ *
+ * @example {"name": "not-ok.md", "label": "output", "setting": "'"}
+ *
+ *   1:31-1:47: Titles should use `'` as a quote
+ *
+ * @example {"name": "ok.md", "setting": "()"}
+ *
+ *   [Example](http://example.com#without-title)
+ *   [Example](http://example.com (Example Domain))
+ *   ![Example](http://example.com (Example Domain))
+ *
+ *   [Example]: http://example.com (Example Domain)
+ *
+ * @example {"name": "not-ok.md", "label": "input", "setting": "()"}
+ *
+ *   [Example](http://example.com 'Example Domain')
+ *
+ * @example {"name": "not-ok.md", "label": "output", "setting": "()"}
+ *
+ *   1:30-1:46: Titles should use `()` as a quote
+ *
+ * @example {"name": "not-ok.md", "label": "input"}
+ *
+ *   [Example](http://example.com "Example Domain")
+ *   [Example](http://example.com 'Example Domain')
+ *
+ * @example {"name": "not-ok.md", "label": "output"}
+ *
+ *   2:30-2:46: Titles should use `"` as a quote
+ *
+ * @example {"name": "not-ok.md", "setting": "💩", "label": "output", "config": {"positionless": true}}
+ *
+ *   1:1: Incorrect link title style marker `💩`: use either `'consistent'`, `'"'`, `'\''`, or `'()'`
+ */
+
+/**
+ * @author Titus Wormer
+ * @copyright 2015 Titus Wormer
+ * @license MIT
+ * @module list-item-content-indent
+ * @fileoverview
+ *   Warn when the content of a list item has mixed indentation.
+ *
+ * @example {"name": "ok.md"}
+ *
+ *   1.·[x] Alpha
+ *   ···1. Bravo
+ *
+ * @example {"name": "not-ok.md", "label": "input"}
+ *
+ *   1.·[x] Charlie
+ *   ····1. Delta
+ *
+ * @example {"name": "not-ok.md", "label": "output"}
+ *
+ *   2:5: Don’t use mixed indentation for children, remove 1 space
+ */
+
+/**
+ * @author Titus Wormer
+ * @copyright 2015 Titus Wormer
+ * @license MIT
+ * @module list-item-indent
+ * @fileoverview
+ *   Warn when the spacing between a list item’s bullet and its content violates
+ *   a given style.
+ *
+ *   Options: `'tab-size'`, `'mixed'`, or `'space'`, default: `'tab-size'`.
+ *
+ *   ## Fix
+ *
+ *   [`remark-stringify`](https://github.com/remarkjs/remark/tree/HEAD/packages/remark-stringify)
+ *   uses `'tab-size'` (named `'tab'` there) by default to ensure Markdown is
+ *   seen the same way across vendors.
+ *   This can be configured with the
+ *   [`listItemIndent`](https://github.com/remarkjs/remark/tree/HEAD/packages/remark-stringify#optionslistitemindent)
+ *   option.
+ *   This rule’s `'space'` option is named `'1'` there.
+ *
+ *   See [Using remark to fix your Markdown](https://github.com/remarkjs/remark-lint#using-remark-to-fix-your-markdown)
+ *   on how to automatically fix warnings for this rule.
+ *
+ * @example {"name": "ok.md"}
+ *
+ *   *···List
+ *   ····item.
+ *
+ *   Paragraph.
+ *
+ *   11.·List
+ *   ····item.
+ *
+ *   Paragraph.
+ *
+ *   *···List
+ *   ····item.
+ *
+ *   *···List
+ *   ····item.
+ *
+ * @example {"name": "ok.md", "setting": "mixed"}
+ *
+ *   *·List item.
+ *
+ *   Paragraph.
+ *
+ *   11.·List item
+ *
+ *   Paragraph.
+ *
+ *   *···List
+ *   ····item.
+ *
+ *   *···List
+ *   ····item.
+ *
+ * @example {"name": "ok.md", "setting": "space"}
+ *
+ *   *·List item.
+ *
+ *   Paragraph.
+ *
+ *   11.·List item
+ *
+ *   Paragraph.
+ *
+ *   *·List
+ *   ··item.
+ *
+ *   *·List
+ *   ··item.
+ *
+ * @example {"name": "not-ok.md", "setting": "space", "label": "input"}
+ *
+ *   *···List
+ *   ····item.
+ *
+ * @example {"name": "not-ok.md", "setting": "space", "label": "output"}
+ *
+ *    1:5: Incorrect list-item indent: remove 2 spaces
+ *
+ * @example {"name": "not-ok.md", "setting": "tab-size", "label": "input"}
+ *
+ *   *·List
+ *   ··item.
+ *
+ * @example {"name": "not-ok.md", "setting": "tab-size", "label": "output"}
+ *
+ *    1:3: Incorrect list-item indent: add 2 spaces
+ *
+ * @example {"name": "not-ok.md", "setting": "mixed", "label": "input"}
+ *
+ *   *···List item.
+ *
+ * @example {"name": "not-ok.md", "setting": "mixed", "label": "output"}
+ *
+ *    1:5: Incorrect list-item indent: remove 2 spaces
+ *
+ * @example {"name": "not-ok.md", "setting": "💩", "label": "output", "config": {"positionless": true}}
+ *
+ *    1:1: Incorrect list-item indent style `💩`: use either `'tab-size'`, `'space'`, or `'mixed'`
+ */
+
+/**
+ * @author Titus Wormer
+ * @copyright 2015 Titus Wormer
+ * @license MIT
+ * @module list-item-spacing
+ * @fileoverview
+ *   Warn when list looseness is incorrect, such as being tight when it should
+ *   be loose, and vice versa.
+ *
+ *   According to the [`markdown-style-guide`](http://www.cirosantilli.com/markdown-style-guide/),
+ *   if one or more list items in a list spans more than one line, the list is
+ *   required to have blank lines between each item.
+ *   And otherwise, there should not be blank lines between items.
+ *
+ *   By default, all items must be “loose” (a blank line must be between them)
+ *   if one or more items are multiline (span more than one line).
+ *   Otherwise, the list must be tight (no blank line must be between items).
+ *
+ *   If you pass `{checkBlanks: true}`, all items must be “loose” if one or more
+ *   items contain blank lines.
+ *   Otherwise, the list must be tight.
+ *
+ * @example {"name": "ok.md"}
+ *
+ *   A tight list:
+ *
+ *   -   item 1
+ *   -   item 2
+ *   -   item 3
+ *
+ *   A loose list:
+ *
+ *   -   Wrapped
+ *       item
+ *
+ *   -   item 2
+ *
+ *   -   item 3
+ *
+ * @example {"name": "not-ok.md", "label": "input"}
+ *
+ *   A tight list:
+ *
+ *   -   Wrapped
+ *       item
+ *   -   item 2
+ *   -   item 3
+ *
+ *   A loose list:
+ *
+ *   -   item 1
+ *
+ *   -   item 2
+ *
+ *   -   item 3
+ *
+ * @example {"name": "not-ok.md", "label": "output"}
+ *
+ *   4:9-5:1: Missing new line after list item
+ *   5:11-6:1: Missing new line after list item
+ *   11:1-12:1: Extraneous new line after list item
+ *   13:1-14:1: Extraneous new line after list item
+ *
+ * @example {"name": "ok.md", "setting": {"checkBlanks": true}}
+ *
+ *   A tight list:
+ *
+ *   -   item 1
+ *       - item 1.A
+ *   -   item 2
+ *       > Block quote
+ *
+ *   A loose list:
+ *
+ *   -   item 1
+ *
+ *       - item 1.A
+ *
+ *   -   item 2
+ *
+ *       > Block quote
+ *
+ * @example {"name": "not-ok.md", "setting": {"checkBlanks": true}, "label": "input"}
+ *
+ *   A tight list:
+ *
+ *   -   item 1
+ *
+ *       - item 1.A
+ *   -   item 2
+ *
+ *       > Block quote
+ *   -   item 3
+ *
+ *   A loose list:
+ *
+ *   -   item 1
+ *       - item 1.A
+ *
+ *   -   item 2
+ *       > Block quote
+ *
+ * @example {"name": "not-ok.md", "setting": {"checkBlanks": true}, "label": "output"}
+ *
+ *   5:15-6:1: Missing new line after list item
+ *   8:18-9:1: Missing new line after list item
+ *   15:1-16:1: Extraneous new line after list item
+ */
+
+/**
+ * @author Titus Wormer
+ * @copyright 2015 Titus Wormer
+ * @license MIT
+ * @module maximum-heading-length
+ * @fileoverview
+ *   Warn when headings are too long.
+ *
+ *   Options: `number`, default: `60`.
+ *
+ *   Ignores Markdown syntax, only checks the plain text content.
+ *
+ * @example {"name": "ok.md"}
+ *
+ *   # Alpha bravo charlie delta echo foxtrot golf hotel
+ *
+ *   # ![Alpha bravo charlie delta echo foxtrot golf hotel](http://example.com/nato.png)
+ *
+ * @example {"name": "not-ok.md", "setting": 40, "label": "input"}
+ *
+ *   # Alpha bravo charlie delta echo foxtrot golf hotel
+ *
+ * @example {"name": "not-ok.md", "setting": 40, "label": "output"}
+ *
+ *   1:1-1:52: Use headings shorter than `40`
+ */
+
+/**
+ * @author Titus Wormer
+ * @copyright 2015 Titus Wormer
+ * @license MIT
+ * @module maximum-line-length
+ * @fileoverview
+ *   Warn when lines are too long.
+ *
+ *   Options: `number`, default: `80`.
+ *
+ *   Ignores nodes that cannot be wrapped, such as headings, tables, code,
+ *   definitions, HTML, and JSX.
+ *
+ *   Ignores images, links, and inline code if they start before the wrap, end
+ *   after the wrap, and there’s no whitespace after them.
+ *
+ * @example {"name": "ok.md", "config": {"positionless": true}}
+ *
+ *   This line is simply not toooooooooooooooooooooooooooooooooooooooooooo
+ *   long.
+ *
+ *   This is also fine: <http://this-long-url-with-a-long-domain.co.uk/a-long-path?query=variables>
+ *
+ *   <http://this-link-is-fine.com>
+ *
+ *   `alphaBravoCharlieDeltaEchoFoxtrotGolfHotelIndiaJuliettKiloLimaMikeNovemberOscarPapaQuebec.romeo()`
+ *
+ *   [foo](http://this-long-url-with-a-long-domain-is-ok.co.uk/a-long-path?query=variables)
+ *
+ *   <http://this-long-url-with-a-long-domain-is-ok.co.uk/a-long-path?query=variables>
+ *
+ *   ![foo](http://this-long-url-with-a-long-domain-is-ok.co.uk/a-long-path?query=variables)
+ *
+ *   | An | exception | is | line | length | in | long | tables | because | those | can’t | just |
+ *   | -- | --------- | -- | ---- | ------ | -- | ---- | ------ | ------- | ----- | ----- | ---- |
+ *   | be | helped    |    |      |        |    |      |        |         |       |       | .    |
+ *
+ *   <a><b><i><p><q><s><u>alpha bravo charlie delta echo foxtrot golf</u></s></q></p></i></b></a>
+ *
+ *   The following is also fine, because there is no whitespace.
+ *
+ *   <http://this-long-url-with-a-long-domain-is-ok.co.uk/a-long-path?query=variables>.
+ *
+ *   In addition, definitions are also fine:
+ *
+ *   [foo]: <http://this-long-url-with-a-long-domain-is-ok.co.uk/a-long-path?query=variables>
+ *
+ * @example {"name": "not-ok.md", "setting": 80, "label": "input", "config": {"positionless": true}}
+ *
+ *   This line is simply not tooooooooooooooooooooooooooooooooooooooooooooooooooooooo
+ *   long.
+ *
+ *   Just like thiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiis one.
+ *
+ *   And this one is also very wrong: because the link starts aaaaaaafter the column: <http://line.com>
+ *
+ *   <http://this-long-url-with-a-long-domain-is-not-ok.co.uk/a-long-path?query=variables> and such.
+ *
+ *   And this one is also very wrong: because the code starts aaaaaaafter the column: `alpha.bravo()`
+ *
+ *   `alphaBravoCharlieDeltaEchoFoxtrotGolfHotelIndiaJuliettKiloLimaMikeNovemberOscar.papa()` and such.
+ *
+ * @example {"name": "not-ok.md", "setting": 80, "label": "output", "config": {"positionless": true}}
+ *
+ *   4:86: Line must be at most 80 characters
+ *   6:99: Line must be at most 80 characters
+ *   8:96: Line must be at most 80 characters
+ *   10:97: Line must be at most 80 characters
+ *   12:99: Line must be at most 80 characters
+ *
+ * @example {"name": "ok-mixed-line-endings.md", "setting": 10, "config": {"positionless": true}}
+ *
+ *   0123456789␍␊
+ *   0123456789␊
+ *   01234␍␊
+ *   01234␊
+ *
+ * @example {"name": "not-ok-mixed-line-endings.md", "setting": 10, "label": "input", "config": {"positionless": true}}
+ *
+ *   012345678901␍␊
+ *   012345678901␊
+ *   01234567890␍␊
+ *   01234567890␊
+ *
+ * @example {"name": "not-ok-mixed-line-endings.md", "setting": 10, "label": "output", "config": {"positionless": true}}
+ *
+ *   1:13: Line must be at most 10 characters
+ *   2:13: Line must be at most 10 characters
+ *   3:12: Line must be at most 10 characters
+ *   4:12: Line must be at most 10 characters
+ */
+
+/**
+ * @author Titus Wormer
+ * @copyright 2015 Titus Wormer
+ * @license MIT
+ * @module no-auto-link-without-protocol
+ * @fileoverview
+ *   Warn for autolinks without protocol.
+ *   Autolinks are URLs enclosed in `<` (less than) and `>` (greater than)
+ *   characters.
+ *
+ *   ## Fix
+ *
+ *   [`remark-stringify`](https://github.com/remarkjs/remark/tree/HEAD/packages/remark-stringify)
+ *   adds a protocol where needed.
+ *
+ *   See [Using remark to fix your Markdown](https://github.com/remarkjs/remark-lint#using-remark-to-fix-your-markdown)
+ *   on how to automatically fix warnings for this rule.
+ *
+ * @example {"name": "ok.md"}
+ *
+ *   <http://www.example.com>
+ *   <mailto:foo@bar.com>
+ *
+ *   Most Markdown vendors don’t recognize the following as a link:
+ *   <www.example.com>
+ *
+ * @example {"name": "not-ok.md", "label": "input"}
+ *
+ *   <foo@bar.com>
+ *
+ * @example {"name": "not-ok.md", "label": "output"}
+ *
+ *   1:1-1:14: All automatic links must start with a protocol
+ */
+
+/**
+ * @author Titus Wormer
+ * @copyright 2015 Titus Wormer
+ * @license MIT
+ * @module no-blockquote-without-marker
+ * @fileoverview
+ *   Warn when blank lines without `>` (greater than) markers are found in a
+ *   block quote.
+ *
+ *   ## Fix
+ *
+ *   [`remark-stringify`](https://github.com/remarkjs/remark/tree/HEAD/packages/remark-stringify)
+ *   adds markers to every line in a block quote.
+ *
+ *   See [Using remark to fix your Markdown](https://github.com/remarkjs/remark-lint#using-remark-to-fix-your-markdown)
+ *   on how to automatically fix warnings for this rule.
+ *
+ * @example {"name": "ok.md"}
+ *
+ *   > Foo…
+ *   > …bar…
+ *   > …baz.
+ *
+ * @example {"name": "not-ok.md", "label": "input"}
+ *
+ *   > Foo…
+ *   …bar…
+ *   > …baz.
+ *
+ * @example {"name": "not-ok.md", "label": "output"}
+ *
+ *   2:1: Missing marker in block quote
+ */
+
+/**
+ * @author Titus Wormer
+ * @copyright 2015 Titus Wormer
+ * @license MIT
+ * @module no-consecutive-blank-lines
+ * @fileoverview
+ *   Warn for too many consecutive blank lines.
+ *   Knows about the extra line needed between a list and indented code, and two
+ *   lists.
+ *
+ *   ## Fix
+ *
+ *   [`remark-stringify`](https://github.com/remarkjs/remark/tree/HEAD/packages/remark-stringify)
+ *   always uses one blank line between blocks if possible, or two lines when
+ *   needed.
+ *
+ *   See [Using remark to fix your Markdown](https://github.com/remarkjs/remark-lint#using-remark-to-fix-your-markdown)
+ *   on how to automatically fix warnings for this rule.
+ *
+ * @example {"name": "ok.md"}
+ *
+ *   Foo…
+ *   ␊
+ *   …Bar.
+ *
+ * @example {"name": "ok-for-code.md"}
+ *
+ *   Paragraph.
+ *
+ *   *   List
+ *   ␊
+ *   ␊
+ *       bravo();
+ *
+ * @example {"name": "empty-document.md"}
+ *
+ * @example {"name": "not-ok.md", "label": "input"}
+ *
+ *   Foo…
+ *   ␊
+ *   ␊
+ *   …Bar
+ *   ␊
+ *   ␊
+ *
+ * @example {"name": "not-ok.md", "label": "output"}
+ *
+ *   4:1: Remove 1 line before node
+ *   4:5: Remove 2 lines after node
+ */
+
+/**
+ * @author Titus Wormer
+ * @copyright 2015 Titus Wormer
+ * @license MIT
+ * @module no-duplicate-headings
+ * @fileoverview
+ *   Warn when duplicate headings are found.
+ *
+ * @example {"name": "ok.md"}
+ *
+ *   # Foo
+ *
+ *   ## Bar
+ *
+ * @example {"name": "not-ok.md", "label": "input"}
+ *
+ *   # Foo
+ *
+ *   ## Foo
+ *
+ *   ## [Foo](http://foo.com/bar)
+ *
+ * @example {"name": "not-ok.md", "label": "output"}
+ *
+ *   3:1-3:7: Do not use headings with similar content (1:1)
+ *   5:1-5:29: Do not use headings with similar content (3:1)
+ */
+
+/**
+ * @author Titus Wormer
+ * @copyright 2015 Titus Wormer
+ * @license MIT
+ * @module no-emphasis-as-heading
+ * @fileoverview
+ *   Warn when emphasis (including strong), instead of a heading, introduces
+ *   a paragraph.
+ *
+ * @example {"name": "ok.md"}
+ *
+ *   # Foo
+ *
+ *   Bar.
+ *
+ * @example {"name": "not-ok.md", "label": "input"}
+ *
+ *   *Foo*
+ *
+ *   Bar.
+ *
+ *   __Qux__
+ *
+ *   Quux.
+ *
+ * @example {"name": "not-ok.md", "label": "output"}
+ *
+ *   1:1-1:6: Don’t use emphasis to introduce a section, use a heading
+ *   5:1-5:8: Don’t use emphasis to introduce a section, use a heading
+ */
+
+/**
+ * @author Titus Wormer
+ * @copyright 2015 Titus Wormer
+ * @license MIT
+ * @module no-file-name-articles
+ * @fileoverview
+ *   Warn when file names start with an article.
+ *
+ * @example {"name": "title.md"}
+ *
+ * @example {"name": "a-title.md", "label": "output", "config": {"positionless": true}}
+ *
+ *   1:1: Do not start file names with `a`
+ *
+ * @example {"name": "the-title.md", "label": "output", "config": {"positionless": true}}
+ *
+ *   1:1: Do not start file names with `the`
+ *
+ * @example {"name": "teh-title.md", "label": "output", "config": {"positionless": true}}
+ *
+ *   1:1: Do not start file names with `teh`
+ *
+ * @example {"name": "an-article.md", "label": "output", "config": {"positionless": true}}
+ *
+ *   1:1: Do not start file names with `an`
+ */
+
+/**
+ * @author Titus Wormer
+ * @copyright 2015 Titus Wormer
+ * @license MIT
+ * @module no-file-name-consecutive-dashes
+ * @fileoverview
+ *   Warn when file names contain consecutive dashes.
+ *
+ * @example {"name": "plug-ins.md"}
+ *
+ * @example {"name": "plug--ins.md", "label": "output", "config": {"positionless": true}}
+ *
+ *   1:1: Do not use consecutive dashes in a file name
+ */
+
+/**
+ * @author Titus Wormer
+ * @copyright 2015 Titus Wormer
+ * @license MIT
+ * @module no-file-name-irregular-characters
+ * @fileoverview
+ *   Warn when file names contain irregular characters: characters other than
+ *   alphanumericals (`a-zA-Z0-9`), hyphen-minus (`-`), and dots (`.`, full
+ *   stops).
+ *
+ *   Options: `RegExp` or `string`, default: `'\\.a-zA-Z0-9-'`.
+ *
+ *   If a string is given, it will be wrapped in
+ *   `new RegExp('[^' + preferred + ']')`.
+ *
+ *   Any match by the wrapped or given expressions creates a message.
+ *
+ * @example {"name": "plug-ins.md"}
+ *
+ * @example {"name": "plugins.md"}
+ *
+ * @example {"name": "plug_ins.md", "label": "output", "config": {"positionless": true}}
+ *
+ *   1:1: Do not use `_` in a file name
+ *
+ * @example {"name": "README.md", "label": "output", "setting": "\\.a-z0-9", "config": {"positionless": true}}
+ *
+ *   1:1: Do not use `R` in a file name
+ *
+ * @example {"name": "plug ins.md", "label": "output", "config": {"positionless": true}}
+ *
+ *   1:1: Do not use ` ` in a file name
+ */
+
+/**
+ * @author Titus Wormer
+ * @copyright 2015 Titus Wormer
+ * @license MIT
+ * @module no-file-name-mixed-case
+ * @fileoverview
+ *   Warn when file names use mixed case: both upper- and lowercase characters.
+ *
+ * @example {"name": "README.md"}
+ *
+ * @example {"name": "readme.md"}
+ *
+ * @example {"name": "Readme.md", "label": "output", "config": {"positionless": true}}
+ *
+ *   1:1: Do not mix casing in file names
+ */
+
+/**
+ * @author Titus Wormer
+ * @copyright 2015 Titus Wormer
+ * @license MIT
+ * @module no-file-name-outer-dashes
+ * @fileoverview
+ *   Warn when file names contain initial or final dashes (hyphen-minus, `-`).
+ *
+ * @example {"name": "readme.md"}
+ *
+ * @example {"name": "-readme.md", "label": "output", "config": {"positionless": true}}
+ *
+ *   1:1: Do not use initial or final dashes in a file name
+ *
+ * @example {"name": "readme-.md", "label": "output", "config": {"positionless": true}}
+ *
+ *   1:1: Do not use initial or final dashes in a file name
+ */
+
+/**
+ * @author Titus Wormer
+ * @copyright 2015 Titus Wormer
+ * @license MIT
+ * @module no-heading-punctuation
+ * @fileoverview
+ *   Warn when a heading ends with a group of characters.
+ *
+ *   Options: `string`, default: `'.,;:!?'`.
+ *
+ *   Note: these are added to a regex, in a group (`'[' + char + ']'`), be
+ *   careful to escape the string correctly.
+ *
+ * @example {"name": "ok.md"}
+ *
+ *   # Hello
+ *
+ * @example {"name": "ok.md", "setting": ",;:!?"}
+ *
+ *   # Hello…
+ *
+ * @example {"name": "not-ok.md", "label": "input"}
+ *
+ *   # Hello:
+ *
+ *   # Hello?
+ *
+ *   # Hello!
+ *
+ *   # Hello,
+ *
+ *   # Hello;
+ *
+ * @example {"name": "not-ok.md", "label": "output"}
+ *
+ *   1:1-1:9: Don’t add a trailing `:` to headings
+ *   3:1-3:9: Don’t add a trailing `?` to headings
+ *   5:1-5:9: Don’t add a trailing `!` to headings
+ *   7:1-7:9: Don’t add a trailing `,` to headings
+ *   9:1-9:9: Don’t add a trailing `;` to headings
+ */
+
+/**
+ * @author Titus Wormer
+ * @copyright 2015 Titus Wormer
+ * @license MIT
+ * @module no-inline-padding
+ * @fileoverview
+ *   Warn when phrasing content is padded with spaces between their markers and
+ *   content.
+ *
+ *   Warns for emphasis, strong, delete, image, and link.
+ *
+ * @example {"name": "ok.md"}
+ *
+ *   Alpha, *bravo*, _charlie_, [delta](http://echo.fox/trot)
+ *
+ * @example {"name": "not-ok.md", "label": "input"}
+ *
+ *   Alpha, * bravo *, _ charlie _, [ delta ](http://echo.fox/trot)
+ *
+ * @example {"name": "not-ok.md", "label": "output"}
+ *
+ *   1:8-1:17: Don’t pad `emphasis` with inner spaces
+ *   1:19-1:30: Don’t pad `emphasis` with inner spaces
+ *   1:32-1:63: Don’t pad `link` with inner spaces
+ */
+
+/**
+ * @author Titus Wormer
+ * @copyright 2015 Titus Wormer
+ * @license MIT
+ * @module no-literal-urls
+ * @fileoverview
+ *   Warn for literal URLs in text.
+ *   URLs are treated as links in some Markdown vendors, but not in others.
+ *   To make sure they are always linked, wrap them in `<` (less than) and `>`
+ *   (greater than).
+ *
+ *   ## Fix
+ *
+ *   [`remark-stringify`](https://github.com/remarkjs/remark/tree/HEAD/packages/remark-stringify)
+ *   never creates literal URLs and always uses `<` (less than) and `>`
+ *   (greater than).
+ *
+ *   See [Using remark to fix your Markdown](https://github.com/remarkjs/remark-lint#using-remark-to-fix-your-markdown)
+ *   on how to automatically fix warnings for this rule.
+ *
+ * @example {"name": "ok.md"}
+ *
+ *   <http://foo.bar/baz>
+ *
+ * @example {"name": "not-ok.md", "label": "input"}
+ *
+ *   http://foo.bar/baz
+ *
+ * @example {"name": "not-ok.md", "label": "output"}
+ *
+ *   1:1-1:19: Don’t use literal URLs without angle brackets
+ */
+
+/**
+ * @author Titus Wormer
+ * @copyright 2015 Titus Wormer
+ * @license MIT
+ * @module no-multiple-toplevel-headings
+ * @fileoverview
+ *   Warn when multiple top level headings are used.
+ *
+ *   Options: `number`, default: `1`.
+ *
+ * @example {"name": "ok.md", "setting": 1}
+ *
+ *   # Foo
+ *
+ *   ## Bar
+ *
+ * @example {"name": "not-ok.md", "setting": 1, "label": "input"}
+ *
+ *   # Foo
+ *
+ *   # Bar
+ *
+ * @example {"name": "not-ok.md", "setting": 1, "label": "output"}
+ *
+ *   3:1-3:6: Don’t use multiple top level headings (1:1)
+ */
+
+/**
+ * @author Titus Wormer
+ * @copyright 2015 Titus Wormer
+ * @license MIT
+ * @module no-shell-dollars
+ * @fileoverview
+ *   Warn when shell code is prefixed by `$` (dollar sign) characters.
+ *
+ *   Ignores indented code blocks and fenced code blocks without language flag.
+ *
+ * @example {"name": "ok.md"}
+ *
+ *   ```bash
+ *   echo a
+ *   ```
+ *
+ *   ```sh
+ *   echo a
+ *   echo a > file
+ *   ```
+ *
+ *   ```zsh
+ *   $ echo a
+ *   a
+ *   $ echo a > file
+ *   ```
+ *
+ *   Some empty code:
+ *
+ *   ```command
+ *   ```
+ *
+ *   It’s fine to use dollars in non-shell code.
+ *
+ *   ```js
+ *   $('div').remove();
+ *   ```
+ *
+ * @example {"name": "not-ok.md", "label": "input"}
+ *
+ *   ```sh
+ *   $ echo a
+ *   ```
+ *
+ *   ```bash
+ *   $ echo a
+ *   $ echo a > file
+ *   ```
+ *
+ * @example {"name": "not-ok.md", "label": "output"}
+ *
+ *   1:1-3:4: Do not use dollar signs before shell commands
+ *   5:1-8:4: Do not use dollar signs before shell commands
+ */
+
+/**
+ * @author Titus Wormer
+ * @copyright 2015 Titus Wormer
+ * @license MIT
+ * @module no-shortcut-reference-image
+ * @fileoverview
+ *   Warn when shortcut reference images are used.
+ *
+ *   Shortcut references render as images when a definition is found, and as
+ *   plain text without definition.
+ *   Sometimes, you don’t intend to create an image from the reference, but this
+ *   rule still warns anyway.
+ *   In that case, you can escape the reference like so: `!\[foo]`.
+ *
+ * @example {"name": "ok.md"}
+ *
+ *   ![foo][]
+ *
+ *   [foo]: http://foo.bar/baz.png
+ *
+ * @example {"name": "not-ok.md", "label": "input"}
+ *
+ *   ![foo]
+ *
+ *   [foo]: http://foo.bar/baz.png
+ *
+ * @example {"name": "not-ok.md", "label": "output"}
+ *
+ *   1:1-1:7: Use the trailing [] on reference images
+ */
+
+/**
+ * @author Titus Wormer
+ * @copyright 2015 Titus Wormer
+ * @license MIT
+ * @module no-shortcut-reference-link
+ * @fileoverview
+ *   Warn when shortcut reference links are used.
+ *
+ *   Shortcut references render as links when a definition is found, and as
+ *   plain text without definition.
+ *   Sometimes, you don’t intend to create a link from the reference, but this
+ *   rule still warns anyway.
+ *   In that case, you can escape the reference like so: `\[foo]`.
+ *
+ * @example {"name": "ok.md"}
+ *
+ *   [foo][]
+ *
+ *   [foo]: http://foo.bar/baz
+ *
+ * @example {"name": "not-ok.md", "label": "input"}
+ *
+ *   [foo]
+ *
+ *   [foo]: http://foo.bar/baz
+ *
+ * @example {"name": "not-ok.md", "label": "output"}
+ *
+ *   1:1-1:6: Use the trailing `[]` on reference links
+ */
+
+/**
+ * @author Titus Wormer
+ * @copyright 2015 Titus Wormer
+ * @license MIT
+ * @module no-table-indentation
+ * @fileoverview
+ *   Warn when tables are indented.
+ *
+ *   ## Fix
+ *
+ *   [`remark-stringify`](https://github.com/remarkjs/remark/tree/HEAD/packages/remark-stringify)
+ *   removes all unneeded indentation before tables.
+ *
+ *   See [Using remark to fix your Markdown](https://github.com/remarkjs/remark-lint#using-remark-to-fix-your-markdown)
+ *   on how to automatically fix warnings for this rule.
+ *
+ * @example {"name": "ok.md"}
+ *
+ *   Paragraph.
+ *
+ *   | A     | B     |
+ *   | ----- | ----- |
+ *   | Alpha | Bravo |
+ *
+ * @example {"name": "not-ok.md", "label": "input"}
+ *
+ *   Paragraph.
+ *
+ *   ···| A     | B     |
+ *   ···| ----- | ----- |
+ *   ···| Alpha | Bravo |
+ *
+ * @example {"name": "not-ok.md", "label": "output"}
+ *
+ *   3:1-3:21: Do not indent table rows
+ *   5:1-5:21: Do not indent table rows
+ */
+
+/**
+ * @author Titus Wormer
+ * @copyright 2015 Titus Wormer
+ * @license MIT
+ * @module ordered-list-marker-style
+ * @fileoverview
+ *   Warn when the list item marker style of ordered lists violate a given style.
+ *
+ *   Options: `'consistent'`, `'.'`, or `')'`, default: `'consistent'`.
+ *
+ *   `'consistent'` detects the first used list style and warns when subsequent
+ *   lists use different styles.
+ *
+ *   Note: `)` is only supported in CommonMark.
+ *
+ * @example {"name": "ok.md"}
+ *
+ *   1.  Foo
+ *
+ *
+ *   1.  Bar
+ *
+ *   Unordered lists are not affected by this rule.
+ *
+ *   * Foo
+ *
+ * @example {"name": "ok.md", "setting": "."}
+ *
+ *   1.  Foo
+ *
+ *   2.  Bar
+ *
+ * @example {"name": "ok.md", "setting": ")", "config": {"commonmark": true}}
+ *
+ *   <!-- This requires commonmark. -->
+ *
+ *   1)  Foo
+ *
+ *   2)  Bar
+ *
+ * @example {"name": "not-ok.md", "label": "input", "config": {"commonmark": true}}
+ *
+ *   1.  Foo
+ *
+ *   2)  Bar
+ *
+ * @example {"name": "not-ok.md", "label": "output"}
+ *
+ *   3:1-3:8: Marker style should be `.`
+ *
+ * @example {"name": "not-ok.md", "label": "output", "setting": "💩", "config": {"positionless": true}}
+ *
+ *   1:1: Incorrect ordered list item marker style `💩`: use either `'.'` or `')'`
+ */
+
+/**
+ * @author Titus Wormer
+ * @copyright 2015 Titus Wormer
+ * @license MIT
+ * @module ordered-list-marker-value
+ * @fileoverview
+ *   Warn when the list item marker values of ordered lists violate a given
+ *   style.
+ *
+ *   Options: `'single'`, `'one'`, or `'ordered'`, default: `'ordered'`.
+ *
+ *   When set to `'ordered'`, list item bullets should increment by one,
+ *   relative to the starting point.
+ *   When set to `'single'`, bullets should be the same as the relative starting
+ *   point.
+ *   When set to `'one'`, bullets should always be `1`.
+ *
+ *   ## Fix
+ *
+ *   [`remark-stringify`](https://github.com/remarkjs/remark/tree/HEAD/packages/remark-stringify)
+ *   retains the number of the first list item bullet, and by default
+ *   increments the other items.
+ *   Pass
+ *   [`incrementListMarker: false`](https://github.com/remarkjs/remark/tree/HEAD/packages/remark-stringify#optionsincrementlistmarker)
+ *   to not increment further list items.
+ *
+ *   See [Using remark to fix your Markdown](https://github.com/remarkjs/remark-lint#using-remark-to-fix-your-markdown)
+ *   on how to automatically fix warnings for this rule.
+ *
+ * @example {"name": "ok.md"}
+ *
+ *   The default value is `ordered`, so unless changed, the below
+ *   is OK.
+ *
+ *   1.  Foo
+ *   2.  Bar
+ *   3.  Baz
+ *
+ *   Paragraph.
+ *
+ *   3.  Alpha
+ *   4.  Bravo
+ *   5.  Charlie
+ *
+ *   Unordered lists are not affected by this rule.
+ *
+ *   *   Anton
+ *
+ * @example {"name": "ok.md", "setting": "one"}
+ *
+ *   1.  Foo
+ *   1.  Bar
+ *   1.  Baz
+ *
+ *   Paragraph.
+ *
+ *   1.  Alpha
+ *   1.  Bravo
+ *   1.  Charlie
+ *
+ * @example {"name": "ok.md", "setting": "single"}
+ *
+ *   1.  Foo
+ *   1.  Bar
+ *   1.  Baz
+ *
+ *   Paragraph.
+ *
+ *   3.  Alpha
+ *   3.  Bravo
+ *   3.  Charlie
+ *
+ *   Paragraph.
+ *
+ *   0.  Delta
+ *   0.  Echo
+ *   0.  Foxtrot
+ *
+ * @example {"name": "ok.md", "setting": "ordered"}
+ *
+ *   1.  Foo
+ *   2.  Bar
+ *   3.  Baz
+ *
+ *   Paragraph.
+ *
+ *   3.  Alpha
+ *   4.  Bravo
+ *   5.  Charlie
+ *
+ *   Paragraph.
+ *
+ *   0.  Delta
+ *   1.  Echo
+ *   2.  Foxtrot
+ *
+ * @example {"name": "not-ok.md", "setting": "one", "label": "input"}
+ *
+ *   1.  Foo
+ *   2.  Bar
+ *
+ * @example {"name": "not-ok.md", "setting": "one", "label": "output"}
+ *
+ *   2:1-2:8: Marker should be `1`, was `2`
+ *
+ * @example {"name": "also-not-ok.md", "setting": "one", "label": "input"}
+ *
+ *   2.  Foo
+ *   1.  Bar
+ *
+ * @example {"name": "also-not-ok.md", "setting": "one", "label": "output"}
+ *
+ *   1:1-1:8: Marker should be `1`, was `2`
+ *
+ * @example {"name": "not-ok.md", "setting": "ordered", "label": "input"}
+ *
+ *   1.  Foo
+ *   1.  Bar
+ *
+ * @example {"name": "not-ok.md", "setting": "ordered", "label": "output"}
+ *
+ *   2:1-2:8: Marker should be `2`, was `1`
+ *
+ * @example {"name": "not-ok.md", "setting": "💩", "label": "output", "config": {"positionless": true}}
+ *
+ *   1:1: Incorrect ordered list item marker value `💩`: use either `'ordered'` or `'one'`
+ */
+
+/**
+ * @author Titus Wormer
+ * @copyright 2015 Titus Wormer
+ * @license MIT
+ * @module rule-style
+ * @fileoverview
+ *   Warn when the thematic breaks (horizontal rules) violate a given or
+ *   detected style.
+ *
+ *   Options: `string`, either a corect thematic breaks such as `***`, or
+ *   `'consistent'`, default: `'consistent'`.
+ *
+ *   `'consistent'` detects the first used thematic break style and warns when
+ *   subsequent rules use different styles.
+ *
+ *   ## Fix
+ *
+ *   [`remark-stringify`](https://github.com/remarkjs/remark/tree/HEAD/packages/remark-stringify)
+ *   has three settings that define how rules are created:
+ *
+ *   *   [`rule`](https://github.com/remarkjs/remark/tree/HEAD/packages/remark-stringify#optionsrule)
+ *       (default: `*`) — Marker to use
+ *   *   [`ruleRepetition`](https://github.com/remarkjs/remark/tree/HEAD/packages/remark-stringify#optionsrulerepetition)
+ *       (default: `3`) — Number of markers to use
+ *   *   [`ruleSpaces`](https://github.com/remarkjs/remark/tree/HEAD/packages/remark-stringify#optionsrulespaces)
+ *       (default: `true`) — Whether to pad markers with spaces
+ *
+ *   See [Using remark to fix your Markdown](https://github.com/remarkjs/remark-lint#using-remark-to-fix-your-markdown)
+ *   on how to automatically fix warnings for this rule.
+ *
+ * @example {"name": "ok.md", "setting": "* * *"}
+ *
+ *   * * *
+ *
+ *   * * *
+ *
+ * @example {"name": "ok.md", "setting": "_______"}
+ *
+ *   _______
+ *
+ *   _______
+ *
+ * @example {"name": "not-ok.md", "label": "input"}
+ *
+ *   ***
+ *
+ *   * * *
+ *
+ * @example {"name": "not-ok.md", "label": "output"}
+ *
+ *   3:1-3:6: Rules should use `***`
+ *
+ * @example {"name": "not-ok.md", "label": "output", "setting": "💩", "config": {"positionless": true}}
+ *
+ *   1:1: Incorrect preferred rule style: provide a correct markdown rule or `'consistent'`
+ */
+
+/**
+ * @author Titus Wormer
+ * @copyright 2015 Titus Wormer
+ * @license MIT
+ * @module strong-marker
+ * @fileoverview
+ *   Warn for violating importance (strong) markers.
+ *
+ *   Options: `'consistent'`, `'*'`, or `'_'`, default: `'consistent'`.
+ *
+ *   `'consistent'` detects the first used importance style and warns when
+ *   subsequent importance sequences use different styles.
+ *
+ *   ## Fix
+ *
+ *   [`remark-stringify`](https://github.com/remarkjs/remark/tree/HEAD/packages/remark-stringify)
+ *   formats importance using an `*` (asterisk) by default.
+ *   Pass
+ *   [`strong: '_'`](https://github.com/remarkjs/remark/tree/HEAD/packages/remark-stringify#optionsstrong)
+ *   to use `_` (underscore) instead.
+ *
+ *   See [Using remark to fix your Markdown](https://github.com/remarkjs/remark-lint#using-remark-to-fix-your-markdown)
+ *   on how to automatically fix warnings for this rule.
+ *
+ * @example {"name": "ok.md"}
+ *
+ *   **foo** and **bar**.
+ *
+ * @example {"name": "also-ok.md"}
+ *
+ *   __foo__ and __bar__.
+ *
+ * @example {"name": "ok.md", "setting": "*"}
+ *
+ *   **foo**.
+ *
+ * @example {"name": "ok.md", "setting": "_"}
+ *
+ *   __foo__.
+ *
+ * @example {"name": "not-ok.md", "label": "input"}
+ *
+ *   **foo** and __bar__.
+ *
+ * @example {"name": "not-ok.md", "label": "output"}
+ *
+ *   1:13-1:20: Strong should use `*` as a marker
+ *
+ * @example {"name": "not-ok.md", "label": "output", "setting": "💩", "config": {"positionless": true}}
+ *
+ *   1:1: Incorrect strong marker `💩`: use either `'consistent'`, `'*'`, or `'_'`
+ */
+
+/**
+ * @author Titus Wormer
+ * @copyright 2015 Titus Wormer
+ * @license MIT
+ * @module table-cell-padding
+ * @fileoverview
+ *   Warn when table cells are incorrectly padded.
+ *
+ *   Options: `'consistent'`, `'padded'`, or `'compact'`, default: `'consistent'`.
+ *
+ *   `'consistent'` detects the first used cell padding style and warns when
+ *   subsequent cells use different styles.
+ *
+ *   ## Fix
+ *
+ *   [`remark-stringify`](https://github.com/remarkjs/remark/tree/HEAD/packages/remark-stringify)
+ *   formats tables with padding by default.
+ *   Pass
+ *   [`spacedTable: false`](https://github.com/remarkjs/remark/tree/HEAD/packages/remark-stringify#optionsspacedtable)
+ *   to not use padding.
+ *
+ *   See [Using remark to fix your Markdown](https://github.com/remarkjs/remark-lint#using-remark-to-fix-your-markdown)
+ *   on how to automatically fix warnings for this rule.
+ *
+ * @example {"name": "ok.md", "setting": "padded"}
+ *
+ *   | A     | B     |
+ *   | ----- | ----- |
+ *   | Alpha | Bravo |
+ *
+ * @example {"name": "not-ok.md", "label": "input", "setting": "padded"}
+ *
+ *   | A    |    B |
+ *   | :----|----: |
+ *   | Alpha|Bravo |
+ *
+ *   | C      |    D |
+ *   | :----- | ---: |
+ *   |Charlie | Delta|
+ *
+ *   Too much padding isn’t good either:
+ *
+ *   | E     | F        |   G    |      H |
+ *   | :---- | -------- | :----: | -----: |
+ *   | Echo  | Foxtrot  |  Golf  |  Hotel |
+ *
+ * @example {"name": "not-ok.md", "label": "output", "setting": "padded"}
+ *
+ *   3:8: Cell should be padded
+ *   3:9: Cell should be padded
+ *   7:2: Cell should be padded
+ *   7:17: Cell should be padded
+ *   13:23: Cell should be padded with 1 space, not 2
+ *   13:32: Cell should be padded with 1 space, not 2
+ *
+ * @example {"name": "ok.md", "setting": "compact"}
+ *
+ *   |A    |B    |
+ *   |-----|-----|
+ *   |Alpha|Bravo|
+ *
+ * @example {"name": "not-ok.md", "label": "input", "setting": "compact"}
+ *
+ *   |   A    | B    |
+ *   |   -----| -----|
+ *   |   Alpha| Bravo|
+ *
+ *   |C      |     D|
+ *   |:------|-----:|
+ *   |Charlie|Delta |
+ *
+ * @example {"name": "not-ok.md", "label": "output", "setting": "compact"}
+ *
+ *   3:5: Cell should be compact
+ *   3:12: Cell should be compact
+ *   7:15: Cell should be compact
+ *
+ * @example {"name": "ok-padded.md", "setting": "consistent"}
+ *
+ *   | A     | B     |
+ *   | ----- | ----- |
+ *   | Alpha | Bravo |
+ *
+ *   | C       | D     |
+ *   | ------- | ----- |
+ *   | Charlie | Delta |
+ *
+ * @example {"name": "not-ok-padded.md", "label": "input", "setting": "consistent"}
+ *
+ *   | A     | B     |
+ *   | ----- | ----- |
+ *   | Alpha | Bravo |
+ *
+ *   | C      |     D |
+ *   | :----- | ----: |
+ *   |Charlie | Delta |
+ *
+ * @example {"name": "not-ok-padded.md", "label": "output", "setting": "consistent"}
+ *
+ *   7:2: Cell should be padded
+ *
+ * @example {"name": "ok-compact.md", "setting": "consistent"}
+ *
+ *   |A    |B    |
+ *   |-----|-----|
+ *   |Alpha|Bravo|
+ *
+ *   |C      |D    |
+ *   |-------|-----|
+ *   |Charlie|Delta|
+ *
+ * @example {"name": "not-ok-compact.md", "label": "input", "setting": "consistent"}
+ *
+ *   |A    |B    |
+ *   |-----|-----|
+ *   |Alpha|Bravo|
+ *
+ *   |C      |     D|
+ *   |:------|-----:|
+ *   |Charlie|Delta |
+ *
+ * @example {"name": "not-ok-compact.md", "label": "output", "setting": "consistent"}
+ *
+ *   7:15: Cell should be compact
+ *
+ * @example {"name": "not-ok.md", "label": "output", "setting": "💩", "config": {"positionless": true}}
+ *
+ *   1:1: Incorrect table cell padding style `💩`, expected `'padded'`, `'compact'`, or `'consistent'`
+ *
+ * @example {"name": "empty.md", "label": "input", "setting": "padded"}
+ *
+ *   <!-- Empty cells are OK, but those surrounding them may not be. -->
+ *
+ *   |        | Alpha | Bravo|
+ *   | ------ | ----- | ---: |
+ *   | Charlie|       |  Echo|
+ *
+ * @example {"name": "empty.md", "label": "output", "setting": "padded"}
+ *
+ *   3:25: Cell should be padded
+ *   5:10: Cell should be padded
+ *   5:25: Cell should be padded
+ *
+ * @example {"name": "missing-body.md", "setting": "padded"}
+ *
+ *   <!-- Missing cells are fine as well. -->
+ *
+ *   | Alpha | Bravo   | Charlie |
+ *   | ----- | ------- | ------- |
+ *   | Delta |
+ *   | Echo  | Foxtrot |
+ */
+
+/**
+ * @author Titus Wormer
+ * @copyright 2015 Titus Wormer
+ * @license MIT
+ * @module table-pipe-alignment
+ * @fileoverview
+ *   Warn when table pipes are not aligned.
+ *
+ *   ## Fix
+ *
+ *   [`remark-stringify`](https://github.com/remarkjs/remark/tree/HEAD/packages/remark-stringify)
+ *   tries to align tables by default.
+ *   Pass
+ *   [`paddedTable: false`](https://github.com/remarkjs/remark/tree/HEAD/packages/remark-stringify#optionspaddedtable)
+ *   to not align cells.
+ *
+ *   Aligning cells perfectly is impossible as some characters (such as emoji or
+ *   Chinese characters) are rendered differently in different browsers,
+ *   terminals, and editors.
+ *   You can pass your own
+ *   [`stringLength`](https://github.com/remarkjs/remark/tree/HEAD/packages/remark-stringify#optionsstringlength)
+ *   function to customize how cells are aligned.
+ *   In that case, this rule must be turned off.
+ *
+ *   See [Using remark to fix your Markdown](https://github.com/remarkjs/remark-lint#using-remark-to-fix-your-markdown)
+ *   on how to automatically fix warnings for this rule.
+ *
+ * @example {"name": "ok.md"}
+ *
+ *   | A     | B     |
+ *   | ----- | ----- |
+ *   | Alpha | Bravo |
+ *
+ * @example {"name": "not-ok.md", "label": "input"}
+ *
+ *   | A | B |
+ *   | -- | -- |
+ *   | Alpha | Bravo |
+ *
+ * @example {"name": "not-ok.md", "label": "output"}
+ *
+ *   3:9-3:10: Misaligned table fence
+ *   3:17-3:18: Misaligned table fence
+ */
+
+/**
+ * @author Titus Wormer
+ * @copyright 2015 Titus Wormer
+ * @license MIT
+ * @module table-pipes
+ * @fileoverview
+ *   Warn when table rows are not fenced with pipes.
+ *
+ *   ## Fix
+ *
+ *   [`remark-stringify`](https://github.com/remarkjs/remark/tree/HEAD/packages/remark-stringify)
+ *   creates fenced rows with initial and final pipes by default.
+ *   Pass
+ *   [`looseTable: true`](https://github.com/remarkjs/remark/tree/HEAD/packages/remark-stringify#optionsloosetable)
+ *   to not use row fences.
+ *
+ *   See [Using remark to fix your Markdown](https://github.com/remarkjs/remark-lint#using-remark-to-fix-your-markdown)
+ *   on how to automatically fix warnings for this rule.
+ *
+ * @example {"name": "ok.md"}
+ *
+ *   | A     | B     |
+ *   | ----- | ----- |
+ *   | Alpha | Bravo |
+ *
+ * @example {"name": "not-ok.md", "label": "input"}
+ *
+ *   A     | B
+ *   ----- | -----
+ *   Alpha | Bravo
+ *
+ * @example {"name": "not-ok.md", "label": "output"}
+ *
+ *   1:1: Missing initial pipe in table fence
+ *   1:10: Missing final pipe in table fence
+ *   3:1: Missing initial pipe in table fence
+ *   3:14: Missing final pipe in table fence
+ */
+
+/**
+ * @author Titus Wormer
+ * @copyright 2015 Titus Wormer
+ * @license MIT
+ * @module unordered-list-marker-style
+ * @fileoverview
+ *   Warn when the list item marker style of unordered lists violate a given
+ *   style.
+ *
+ *   Options: `'consistent'`, `'-'`, `'*'`, or `'+'`, default: `'consistent'`.
+ *
+ *   `'consistent'` detects the first used list style and warns when subsequent
+ *   lists use different styles.
+ *
+ *   ## Fix
+ *
+ *   [`remark-stringify`](https://github.com/remarkjs/remark/tree/HEAD/packages/remark-stringify)
+ *   formats unordered lists using `-` (hyphen-minus) by default.
+ *   Pass
+ *   [`bullet: '*'` or `bullet: '+'`](https://github.com/remarkjs/remark/tree/HEAD/packages/remark-stringify#optionsbullet)
+ *   to use `*` (asterisk) or `+` (plus sign) instead.
+ *
+ *   See [Using remark to fix your Markdown](https://github.com/remarkjs/remark-lint#using-remark-to-fix-your-markdown)
+ *   on how to automatically fix warnings for this rule.
+ *
+ * @example {"name": "ok.md"}
+ *
+ *   By default (`'consistent'`), if the file uses only one marker,
+ *   that’s OK.
+ *
+ *   * Foo
+ *   * Bar
+ *   * Baz
+ *
+ *   Ordered lists are not affected.
+ *
+ *   1. Foo
+ *   2. Bar
+ *   3. Baz
+ *
+ * @example {"name": "ok.md", "setting": "*"}
+ *
+ *   * Foo
+ *
+ * @example {"name": "ok.md", "setting": "-"}
+ *
+ *   - Foo
+ *
+ * @example {"name": "ok.md", "setting": "+"}
+ *
+ *   + Foo
+ *
+ * @example {"name": "not-ok.md", "label": "input"}
+ *
+ *   * Foo
+ *   - Bar
+ *   + Baz
+ *
+ * @example {"name": "not-ok.md", "label": "output"}
+ *
+ *   2:1-2:6: Marker style should be `*`
+ *   3:1-3:6: Marker style should be `*`
+ *
+ * @example {"name": "not-ok.md", "label": "output", "setting": "💩", "config": {"positionless": true}}
+ *
+ *   1:1: Incorrect unordered list item marker style `💩`: use either `'-'`, `'*'`, or `'+'`
+ */
+
+/** @license React v0.19.1
+ * scheduler.production.min.js
+ *
+ * Copyright (c) Facebook, Inc. and its affiliates.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+/** @license React v16.13.1
+ * react-dom.production.min.js
+ *
+ * Copyright (c) Facebook, Inc. and its affiliates.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+/** @license React v16.13.1
+ * react.production.min.js
+ *
+ * Copyright (c) Facebook, Inc. and its affiliates.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
